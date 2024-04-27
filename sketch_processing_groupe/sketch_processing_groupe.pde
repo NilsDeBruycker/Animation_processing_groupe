@@ -26,7 +26,7 @@ surface.setResizable(true);
   frameRate(30);
 }
 Temp temp=new Temp();
-  
+Eau_et_electricite eau_et_electricite=new Eau_et_electricite();
 
 void draw(){
   /*background(255,255,255);
