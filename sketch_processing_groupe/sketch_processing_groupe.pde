@@ -11,7 +11,7 @@
 
 public void setup(){
 size(1920,1080);
-surface.setResizable(true);
+//surface.setResizable(true);
   /*
   maison=loadImage("maison.png");
   porte=loadImage("porte.png");
