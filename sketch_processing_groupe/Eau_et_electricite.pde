@@ -1,3 +1,4 @@
+
 public class Eau_et_electricite{
   boolean eau;
   boolean electricite;
@@ -26,4 +27,5 @@ public class Eau_et_electricite{
   void restore_eau(){eau=true;}
   
   void restore_electicite(){electricite=true;}
+  
 }
