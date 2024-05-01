@@ -27,8 +27,16 @@ public class Temp{
   }
 
   void maj_bouton(){
-  boutonFermerV.maj_souris;
+  boutonFermerV.maj_souris();
   //boutonFermerV.majcouleur(guard_volet())
   boutonFermerV.affiche();
+  
+  bouton_pas_tondre.maj_souris();
+  //bouton_pas_tondre.majcouleur(tondeuse.guard_off());
+  bouton_pas_tondre.affiche();
+  
+  bouton_tondre.maj_souris();
+  bouton_tondre.majcouleur(tondeuse.guard_tondre(4321));
+  bouton_tondre.affiche();
   }
 }

@@ -1,4 +1,4 @@
-class SecheLinge {
+/*class SecheLinge {
     PImage secheLingeVide;
     PImage secheLingePlein;
     boolean secheLingeEstPlein = false; 
@@ -36,4 +36,4 @@ class SecheLinge {
     void toggleAllumeSL() {
         secheLingeEstAllume = !secheLingeEstAllume;
     }
-}
+}*/

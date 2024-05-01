@@ -1,4 +1,4 @@
-class MachineALaver {
+/*class MachineALaver {
   PImage imageVide;
   PImage imagePlein;
   boolean estPlein = false;
@@ -37,4 +37,4 @@ class MachineALaver {
   void toggleAllume() {
     estAllume = !estAllume;
   }
-}
+}*/

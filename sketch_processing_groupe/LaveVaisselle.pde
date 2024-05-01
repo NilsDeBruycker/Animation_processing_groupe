@@ -1,4 +1,4 @@
-class LaveVaisselle {
+/*class LaveVaisselle {
   PImage imageVideLV;
   PImage imagePleinLV;
   boolean estPleinLV = false;
@@ -36,4 +36,4 @@ class LaveVaisselle {
   void toggleAllumeLV() {
     estAllumeLV = !estAllumeLV;
   }
-}
+}*/
