@@ -1,4 +1,4 @@
-dat
+
 /*PImage maison;
   PImage porte;
 
@@ -47,4 +47,5 @@ void draw(){
   image(background,0,0);
   temp.display();
   temp.slow_forward();
+  temp.maj_bouton();
 }

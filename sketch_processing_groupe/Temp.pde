@@ -25,4 +25,9 @@ public class Temp{
     fill(0,280,180);
     text(jour+":"+heure+":"+minute,950,106);
   }
+
+  void maj_bouton(){
+  
+  
+  }
 }
