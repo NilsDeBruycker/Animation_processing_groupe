@@ -9,8 +9,10 @@
   PImage herbe;
   PImage téléphone;*/  //ne pas suprimer
   PImage background;
-    volet Volet;
+  //volet Volet;
   Login login;
+  Bouton boutonOuvrirV=new Bouton(100,100,90,30,"bouton");
+  Bouton boutonFermerV=new Bouton(100,100,90,30,"bouton");
 public void setup(){
 size(1920,1080);
 //surface.setResizable(true);
@@ -26,7 +28,7 @@ size(1920,1080);
   téléphone=loadImage("telephone.png");  */ //ne pas suprimer
   background=loadImage("background.png");
   frameRate(30);
-  Volet= new volet();
+  //Volet= new volet();
   login=new Login();
 
 }
@@ -51,14 +53,14 @@ void draw(){
   temp.display();
   temp.slow_forward();
   temp.maj_bouton();
-  Volet.display();
+  //Volet.display();
 }
 
 void mouseClicked() {
  if (boutonOuvrirV.selectionne()) {
-    Volet.ouvrir_volet();
+    //Volet.ouvrir_volet();
   } if (boutonFermerV.selectionne()) {
-    Volet.fermer_volet();
+    //Volet.fermer_volet();
   }
 }
 void mouseReleased(){

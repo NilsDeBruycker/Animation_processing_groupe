@@ -1,4 +1,4 @@
-PImage background;
+/*PImage background;
 PFont font;
 
 MachineALaver machineALaver;
@@ -113,4 +113,4 @@ if (mouseX > 950 && mouseX < 1040) {
   }
 }
 
-}
+}*/
