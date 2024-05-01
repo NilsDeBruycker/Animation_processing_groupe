@@ -27,7 +27,8 @@ public class Temp{
   }
 
   void maj_bouton(){
-  
-  
+  boutonFermerV.maj_souris;
+  //boutonFermerV.majcouleur(guard_volet())
+  boutonFermerV.affiche();
   }
 }

@@ -9,7 +9,8 @@
   PImage herbe;
   PImage téléphone;*/  //ne pas suprimer
   PImage background;
-
+    volet Volet;
+  Login login;
 public void setup(){
 size(1920,1080);
 //surface.setResizable(true);
@@ -25,7 +26,9 @@ size(1920,1080);
   téléphone=loadImage("telephone.png");  */ //ne pas suprimer
   background=loadImage("background.png");
   frameRate(30);
-  
+  Volet= new volet();
+  login=new Login();
+
 }
 Temp temp=new Temp();
 Eau_et_electricite eau_et_electricite=new Eau_et_electricite();
@@ -48,4 +51,20 @@ void draw(){
   temp.display();
   temp.slow_forward();
   temp.maj_bouton();
+  Volet.display();
+}
+
+void mouseClicked() {
+ if (boutonOuvrirV.selectionne()) {
+    Volet.ouvrir_volet();
+  } if (boutonFermerV.selectionne()) {
+    Volet.fermer_volet();
+  }
+}
+void mouseReleased(){
+  boutonOuvrirV.relache();
+  boutonFermerV.relache();
+  
+
+
 }
