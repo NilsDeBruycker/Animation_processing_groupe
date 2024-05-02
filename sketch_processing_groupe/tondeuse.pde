@@ -22,15 +22,15 @@ class Tondeuse{
   }
   
   
-  boolean guard_tondre(int mdp_user){return (mdp_user==mot_de_passe);}
+  boolean guard_tondre(int mdp_user){return (mdp_user==mot_de_passe && on==false);}
     
   void tondre(int niveau_de_tonte){
     on=true;
     if (temp.heure<horaire[1][0] )//horaire sui pd nuit comence matin peut etre supp plus tard
     {
       heure_de_fin.jour=temp.jour;
-      heure_de_fin.heure=horaire[0][0]+4;
-      heure_de_fin.minute=horaire[0][0];
+      heure_de_fin.heure=horaire[1][0]+4;
+      heure_de_fin.minute=horaire[1][0];
     }
     else if(temp.heure<horaire[0][0]-4||(temp.heure==horaire[0][0]-4&&temp.minute<=horaire[0][1])){//si normal
       heure_de_fin.jour=temp.jour;
@@ -59,6 +59,7 @@ class Tondeuse{
    heure_de_fin.jour=0;
    heure_de_fin.heure=0;
    heure_de_fin.minute=0;
+   
  
  }
     

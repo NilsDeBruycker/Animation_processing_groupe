@@ -54,7 +54,7 @@ void draw(){
   image(téléphone,1370,45,téléphone.width/2,téléphone.height/2);*/ //ancien code gaurder ca en aurai besoin si veut refaire l'ariere plant mais garder en com sinon car impacte performance
   image(background,0,0);
   temp.display();
-  temp.slow_forward();
+  temp.forward(0,0,1);
   temp.maj_bouton();
   tondeuse.display();
   
