@@ -9,8 +9,11 @@
   PImage herbe;
   PImage téléphone;*/  //ne pas suprimer
   PImage background;
-    volet Volet;
+  volet Volet;
   Login login;
+ Bouton boutonOuvrirV=new Bouton(100,100,90,30,"ouvrir");
+ Bouton boutonFermerV=new Bouton(300,100,90,30,"Fermer");
+ 
 public void setup(){
 size(1920,1080);
 //surface.setResizable(true);
@@ -28,10 +31,11 @@ size(1920,1080);
   frameRate(30);
   Volet= new volet();
   login=new Login();
-
+  
 }
 Temp temp=new Temp();
 Eau_et_electricite eau_et_electricite=new Eau_et_electricite();
+
 
 void draw(){
   /*background(255,255,255);
