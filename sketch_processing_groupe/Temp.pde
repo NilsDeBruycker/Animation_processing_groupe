@@ -31,8 +31,23 @@ public class Temp{
   //boutonFermerV.majcouleur(guard_volet());
   boutonFermerV.affiche();
   boutonOuvrirV.maj_souris();
-  //boutonFermerV.majcouleur(guard_volet());
   boutonOuvrirV.affiche();
-  
+  //boutonFermerV.majcouleur(guard_volet());
+  boutonOuvrirV.maj_souris();
+  boutonactivJardin.maj_souris();
+  boutonactivPartial.maj_souris();
+  boutonactivTotal.maj_souris();
+  boutondesactiv.maj_souris();
+  boutonIntrujard.maj_souris();
+  boutonIntruBack.maj_souris();
+  boutonIntruroof.maj_souris();
+  boutonactivJardin.affiche();
+  boutonactivPartial.affiche();
+  boutonactivTotal.affiche();
+  boutondesactiv.affiche();
+  boutonIntrujard.affiche();
+  boutonIntruBack.affiche();
+  boutonIntruroof.affiche();
+
   }
 }

@@ -1,3 +1,4 @@
+import java.util.Random;
 
 /*PImage maison;
   PImage porte;
@@ -11,8 +12,18 @@
   PImage background;
   volet Volet;
   Login login;
- Bouton boutonOuvrirV=new Bouton(100,100,90,30,"ouvrir");
- Bouton boutonFermerV=new Bouton(300,100,90,30,"Fermer");
+  alarm Alarm;
+  intrusion Intrusion;
+ Bouton boutonOuvrirV=new Bouton(100,100,150,50,"ouvrir");
+ Bouton boutonFermerV=new Bouton(300,100,150,50,"Fermer");
+ Bouton boutonactivJardin=new Bouton(300,200,150,50,"EnableAlarmJardin");
+ Bouton boutonactivPartial=new Bouton(300,300,150,50,"EnableAlarmPartial");
+ Bouton boutonactivTotal=new Bouton(300,400,150,50,"EnableAlarm");
+ Bouton boutondesactiv=new Bouton(300,500,150,50,"DisableAlarm");
+ Bouton boutonIntrujard=new Bouton(300,600,150,50,"IntruJardin");
+ Bouton boutonIntruBack=new Bouton(300,650,150,50,"IntruBack");
+ Bouton boutonIntruroof=new Bouton(300,700,150,50,"IntruRoof");
+ 
  
 public void setup(){
 size(1920,1080);
@@ -31,7 +42,8 @@ size(1920,1080);
   frameRate(30);
   Volet= new volet();
   login=new Login();
-  
+  Alarm= new alarm();
+  Intrusion=new intrusion();
 }
 Temp temp=new Temp();
 Eau_et_electricite eau_et_electricite=new Eau_et_electricite();
@@ -56,19 +68,53 @@ void draw(){
   temp.slow_forward();
   temp.maj_bouton();
   Volet.display();
+  Alarm.display();
+  Intrusion.display();
 }
 
 void mouseClicked() {
- if (boutonOuvrirV.selectionne()) {
+ if (boutonOuvrirV.selectionne()&& Alarm.isTotal()) {
     Volet.ouvrir_volet();
   } if (boutonFermerV.selectionne()) {
     Volet.fermer_volet();
+  }
+  if(boutonactivJardin.selectionne()){
+    Alarm.activateJardin();
+  }
+   if(boutonactivPartial.selectionne()){
+    Alarm.activatePartial();
+  }
+   if(boutonactivTotal.selectionne()){
+    Alarm.activateTotal();
+  }
+   if(boutondesactiv.selectionne()){
+    Alarm.turnOff();
+  }
+  if (boutonIntrujard.selectionne()&& (Alarm.isJardin()|| Alarm.isPartial()|| Alarm.isTotal()) ){
+    Intrusion.intru_Jardin_detect();
+  }else if(boutonIntrujard.selectionne() && (!Alarm.isJardin()|| !Alarm.isPartial() || !Alarm.isTotal())){
+    Intrusion.intru_Jardin_non_detect();}
+  if(boutonIntruBack.selectionne() && (Alarm.isPartial() || Alarm.isTotal() ) ){
+    Intrusion.intru_Back_detect();
+  }else if(boutonIntruBack.selectionne()&& (!Alarm.isPartial()|| !Alarm.isTotal())){
+    Intrusion.intru_Back_non_detect();}
+  if(boutonIntruroof.selectionne()&& Alarm.isTotal()){
+  Intrusion.intru_Roof_detect();
+  }else if(boutonIntruroof.selectionne()&& !Alarm.isTotal()){
+    Intrusion.intru_Roof_non_detect();}
+  if((boutonIntrujard.selectionne() || boutonIntruBack.selectionne() || boutonIntruroof.selectionne()) &&(!Alarm.isPartial()&& !Alarm.isTotal() && !Alarm.isJardin())){
+    Intrusion.intru_non_detect();
   }
 }
 void mouseReleased(){
   boutonOuvrirV.relache();
   boutonFermerV.relache();
-  
-
+  boutonactivJardin.relache();
+  boutonactivPartial.relache();
+  boutonactivTotal.relache();
+  boutondesactiv.relache();
+  boutonIntrujard.relache();
+  boutonIntruBack.relache();
+  boutonIntruroof.relache();
 
 }
