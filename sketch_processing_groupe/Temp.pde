@@ -36,7 +36,13 @@ public class Temp{
   bouton_pas_tondre.affiche();
   
   bouton_tondre.maj_souris();
-  bouton_tondre.majcouleur(tondeuse.guard_tondre(4321));
+  bouton_tondre.majcouleur(tondeuse.guard_tondre());
   bouton_tondre.affiche();
+  
+  bouton_login.maj_souris();
+  bouton_login.affiche();
+  
+  bouton_login_tondeuse.maj_souris();
+  bouton_login_tondeuse.affiche();
   }
 }

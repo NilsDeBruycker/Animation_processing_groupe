@@ -12,10 +12,14 @@
   //volet Volet;
   Login login;
   Bouton boutonOuvrirV=new Bouton(100,100,90,30,"bouton");
-  Bouton boutonFermerV=new Bouton(100,100,90,30,"bouton");
+  Bouton boutonFermerV=new Bouton(190,100,90,30,"bouton");
   Bouton bouton_tondre=new Bouton(835,835,90,30,"tondre");
   Bouton bouton_pas_tondre=new Bouton(1025,835,90,30,"pas_tondre");
   Tondeuse tondeuse;
+  Bouton bouton_login= new Bouton(885,115,100,30,"");
+  Bouton bouton_login_tondeuse= new Bouton(1285,1015,100,30,"");
+  
+
 public void setup(){
   size(1920,1080);
   surface.setResizable(true);
@@ -32,8 +36,10 @@ public void setup(){
   background=loadImage("background.png");
   frameRate(30);
   //Volet= new volet();
-  login=new Login();
+  login=new Login(835,100,"1234");
   tondeuse = new Tondeuse();
+  bouton_login.couleur=#FFFFFF;
+  bouton_login_tondeuse.couleur=#FFFFFF;
 }
 Temp temp=new Temp();
 Eau_et_electricite eau_et_electricite=new Eau_et_electricite();
@@ -56,8 +62,11 @@ void draw(){
   temp.display();
   temp.forward(0,0,1);
   temp.maj_bouton();
+  tondeuse.check();
   tondeuse.display();
-  
+  tondeuse.login_tondeuse.get_input_from_user();
+  login.get_input_from_user();
+  login.display();
   //Volet.display();
 }
 
@@ -66,15 +75,18 @@ void mouseClicked() {
  } 
  if (boutonFermerV.selectionne()) {//Volet.fermer_volet();
  }
- if (bouton_tondre.selectionne()&&tondeuse.guard_tondre(4321)){tondeuse.tondre(1);}
+ if (bouton_tondre.selectionne()&&tondeuse.guard_tondre()){tondeuse.tondre(1);}
  if(bouton_pas_tondre.selectionne()&&tondeuse.guard_off()){tondeuse.off();}
-  
+ if(bouton_login.selectionne()){login.ecrire=true;}
+ if(bouton_login_tondeuse.selectionne()){tondeuse.login_tondeuse.ecrire=true;}
 }
 void mouseReleased(){
   boutonOuvrirV.relache();
   boutonFermerV.relache();
   bouton_pas_tondre.relache();
   bouton_tondre.relache();
+  bouton_login.relache();
+  bouton_login_tondeuse.relache();
   
 
 

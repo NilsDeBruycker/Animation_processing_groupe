@@ -23,7 +23,6 @@ public class Eau_et_electricite{
   
   void gros_crash_electricite(){electricite=false;}
   
-  void restore_eau(){eau=true;}
-  
+  void restore_eau(){eau=true;}  
   void restore_electicite(){electricite=true;}
 }
