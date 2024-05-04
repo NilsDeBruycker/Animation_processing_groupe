@@ -44,5 +44,21 @@ public class Temp{
   
   bouton_login_tondeuse.maj_souris();
   bouton_login_tondeuse.affiche();
+  
+  eau_kaput.maj_souris();
+  eau_kaput.affiche();
+  
+  elec_kaput.maj_souris();
+  elec_kaput.affiche();
+  
+  eau_restore.maj_souris();
+  eau_restore.affiche();
+  
+  big_elec_down.maj_souris();
+  big_elec_down.majcouleur(eau_et_electricite.guard_big_crash());
+  big_elec_down.affiche();
+  
+  elec_restore.maj_souris();
+  elec_restore.affiche();
   }
 }

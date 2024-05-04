@@ -31,7 +31,7 @@ class Tondeuse{
   }
   
   
-  boolean guard_tondre(){return (login_tondeuse.login && login.login && on==false);}
+  boolean guard_tondre(){return (login_tondeuse.login && login.login && on==false&&eau_et_electricite.electricite);}
     
   void tondre(int niveau_de_tonte){
     

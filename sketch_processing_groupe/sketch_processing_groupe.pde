@@ -18,7 +18,13 @@
   Tondeuse tondeuse;
   Bouton bouton_login= new Bouton(885,115,100,30,"");
   Bouton bouton_login_tondeuse= new Bouton(1285,1015,100,30,"");
+  Bouton eau_kaput=new Bouton(360,620,100,30,"crash eau");
+  Bouton elec_kaput=new Bouton(150,710,100,30,"crash elec");
+  Bouton eau_restore=new Bouton(360,650,100,30,"restore water");
+  Bouton big_elec_down=new Bouton(150,740,100,30,"big crash elec");
+  Bouton elec_restore=new Bouton(150,770,100,30,"restore elec");
   
+  Eau_et_electricite eau_et_electricite;
 
 public void setup(){
   size(1920,1080);
@@ -40,9 +46,10 @@ public void setup(){
   tondeuse = new Tondeuse();
   bouton_login.couleur=#FFFFFF;
   bouton_login_tondeuse.couleur=#FFFFFF;
+  eau_et_electricite=new Eau_et_electricite();
 }
 Temp temp=new Temp();
-Eau_et_electricite eau_et_electricite=new Eau_et_electricite();
+
 
 void draw(){
   /*background(255,255,255);
@@ -68,6 +75,7 @@ void draw(){
   login.get_input_from_user();
   login.display();
   //Volet.display();
+  eau_et_electricite.display();
 }
 
 void mouseClicked() {
@@ -79,6 +87,11 @@ void mouseClicked() {
  if(bouton_pas_tondre.selectionne()&&tondeuse.guard_off()){tondeuse.off();}
  if(bouton_login.selectionne()){login.ecrire=true;}
  if(bouton_login_tondeuse.selectionne()){tondeuse.login_tondeuse.ecrire=true;}
+ if(eau_kaput.selectionne()){eau_et_electricite.crash_eau();}
+ if(elec_kaput.selectionne()){eau_et_electricite.crash_electricite();}
+ if(eau_restore.selectionne()){eau_et_electricite.restore_eau();}
+ if(big_elec_down.selectionne()&& eau_et_electricite.guard_big_crash()){eau_et_electricite.gros_crash_electricite();}
+ if(elec_restore.selectionne()){eau_et_electricite.restore_electricite();}
 }
 void mouseReleased(){
   boutonOuvrirV.relache();
@@ -87,6 +100,11 @@ void mouseReleased(){
   bouton_tondre.relache();
   bouton_login.relache();
   bouton_login_tondeuse.relache();
+  eau_kaput.relache();
+  elec_kaput.relache();
+  eau_restore.relache();
+  big_elec_down.relache();
+  elec_restore.relache();
   
 
 
