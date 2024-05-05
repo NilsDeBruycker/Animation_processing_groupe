@@ -23,6 +23,9 @@
   Bouton eau_restore=new Bouton(360,650,100,30,"restore water");
   Bouton big_elec_down=new Bouton(150,740,100,30,"big crash elec");
   Bouton elec_restore=new Bouton(150,770,100,30,"restore elec");
+  Bouton metre_ferie_on=new Bouton(150,150,90,30,"jour ferier");
+  Bouton metre_ferie_off=new Bouton(150,180,110,30,"jour non ferier");
+  
   
   Eau_et_electricite eau_et_electricite;
 
@@ -92,6 +95,8 @@ void mouseClicked() {
  if(eau_restore.selectionne()){eau_et_electricite.restore_eau();}
  if(big_elec_down.selectionne()&& eau_et_electricite.guard_big_crash()){eau_et_electricite.gros_crash_electricite();}
  if(elec_restore.selectionne()){eau_et_electricite.restore_electricite();}
+ if(metre_ferie_on.selectionne()){temp.ferie=true;}
+ if(metre_ferie_off.selectionne()){temp.ferie=false;}
 }
 void mouseReleased(){
   boutonOuvrirV.relache();
@@ -105,6 +110,8 @@ void mouseReleased(){
   eau_restore.relache();
   big_elec_down.relache();
   elec_restore.relache();
+  metre_ferie_on.relache();
+  metre_ferie_off.relache();
   
 
 

@@ -3,6 +3,7 @@ public class Temp{
   int heure;
   int minute;
   int compteur;
+  boolean ferie;
   
   Temp()
   {
@@ -10,6 +11,7 @@ public class Temp{
     heure=0;
     minute=0;
     compteur=0;
+    ferie=false;
   
   }
   void forward(int jour_en_plus,int heure_en_plus,int minute_en_plus){
@@ -24,8 +26,11 @@ public class Temp{
   void display(){
     fill(0,280,180);
     text(jour+":"+heure+":"+minute,950,106);
+    if (ferie){text("est férié",150,210);}
+    else{text("est non férié",150,210);}
   }
-
+  void ferie_on(){ferie=true;}
+  void ferie_off(){ferie=false;}
   void maj_bouton(){
   boutonFermerV.maj_souris();
   //boutonFermerV.majcouleur(guard_volet())
@@ -60,5 +65,12 @@ public class Temp{
   
   elec_restore.maj_souris();
   elec_restore.affiche();
+  
+  metre_ferie_on.maj_souris();
+  metre_ferie_on.affiche();
+  
+  metre_ferie_off.maj_souris();
+  metre_ferie_off.affiche();
+  
   }
 }
