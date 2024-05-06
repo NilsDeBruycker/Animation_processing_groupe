@@ -1,0 +1,42 @@
+public class Eau_et_electricite {
+  boolean eau;
+  boolean electricite;
+  Temp date_crash_electricite;
+
+  Eau_et_electricite(){
+    eau=true;
+    electricite=true;
+    date_crash_electricite=new Temp();
+  }
+
+  void crash_eau() {
+    eau=false;
+  }
+
+  void crash_electricite() {
+    electricite=false; 
+    date_crash_electricite.jour = temps.jour; // Utilisation de la classe Temp pour obtenir la date actuelle
+    date_crash_electricite.heure = temps.heure;
+    date_crash_electricite.minute = temps.minute;
+  }
+
+  boolean guard_big_crash() {
+    return(date_crash_electricite.jour < temps.jour ||
+           (date_crash_electricite.jour == temps.jour && (date_crash_electricite.heure < temps.heure ||
+           (date_crash_electricite.heure == temps.heure && date_crash_electricite.minute < temps.minute))));
+  }
+
+  void gros_crash_electricite() {
+    electricite=false;
+  }
+
+  void restore_eau() {
+    eau=true;
+  }
+
+  void restore_electricite() {
+    electricite=true;
+  }
+
+ 
+}
