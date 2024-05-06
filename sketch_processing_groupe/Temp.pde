@@ -48,6 +48,9 @@ public class Temp{
   boutonIntrujard.affiche();
   boutonIntruBack.affiche();
   boutonIntruroof.affiche();
-
+  boutonProrioGoA.affiche();
+  /*boutonProrioGoH.affiche();*/
+   boutonProrioGoA.maj_souris();
+  /*boutonProrioGoH.maj_souris();*/
   }
 }

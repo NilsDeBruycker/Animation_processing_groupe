@@ -14,6 +14,7 @@ import java.util.Random;
   Login login;
   alarm Alarm;
   intrusion Intrusion;
+  proprio Proprio;
  Bouton boutonOuvrirV=new Bouton(100,100,150,50,"ouvrir");
  Bouton boutonFermerV=new Bouton(300,100,150,50,"Fermer");
  Bouton boutonactivJardin=new Bouton(300,200,150,50,"EnableAlarmJardin");
@@ -23,7 +24,8 @@ import java.util.Random;
  Bouton boutonIntrujard=new Bouton(300,600,150,50,"IntruJardin");
  Bouton boutonIntruBack=new Bouton(300,650,150,50,"IntruBack");
  Bouton boutonIntruroof=new Bouton(300,700,150,50,"IntruRoof");
- 
+ /*Bouton boutonProrioGoH=new Bouton(300,750,150,50,"GoHome");*/
+ Bouton boutonProrioGoA=new Bouton(300,800,150,50,"GoAway");
  
 public void setup(){
 size(1920,1080);
@@ -44,6 +46,7 @@ size(1920,1080);
   login=new Login();
   Alarm= new alarm();
   Intrusion=new intrusion();
+  Proprio=new proprio();
 }
 Temp temp=new Temp();
 Eau_et_electricite eau_et_electricite=new Eau_et_electricite();
@@ -70,6 +73,7 @@ void draw(){
   Volet.display();
   Alarm.display();
   Intrusion.display();
+  Proprio.display();
 }
 
 void mouseClicked() {
@@ -89,6 +93,12 @@ void mouseClicked() {
   }
    if(boutondesactiv.selectionne()){
     Alarm.turnOff();
+  }
+    /* if(boutonProrioGoH.selectionne()){
+    Proprio.go_home();
+  }*/
+     if(boutonProrioGoA.selectionne()){
+    Proprio.go_away();
   }
   if (boutonIntrujard.selectionne()&& (Alarm.isJardin()|| Alarm.isPartial()|| Alarm.isTotal()) ){
     Intrusion.intru_Jardin_detect();
@@ -116,5 +126,7 @@ void mouseReleased(){
   boutonIntrujard.relache();
   boutonIntruBack.relache();
   boutonIntruroof.relache();
+  boutonProrioGoA.relache();
+  /*boutonProrioGoH.relache();*/
 
 }
