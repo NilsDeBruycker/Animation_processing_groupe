@@ -24,8 +24,10 @@ import java.util.Random;
  Bouton boutonIntrujard=new Bouton(300,600,150,50,"IntruJardin");
  Bouton boutonIntruBack=new Bouton(300,650,150,50,"IntruBack");
  Bouton boutonIntruroof=new Bouton(300,700,150,50,"IntruRoof");
- /*Bouton boutonProrioGoH=new Bouton(300,750,150,50,"GoHome");*/
+ Bouton boutonProrioGoH=new Bouton(300,750,150,50,"GoHome");
  Bouton boutonProrioGoA=new Bouton(300,800,150,50,"GoAway");
+ Bouton boutonActivSirene=new Bouton(300,850,150,50,"desactiveSirene");
+ Bouton boutonActivDesactivSirene=new Bouton(300,900,150,50,"DEdesActiveSirene");
  
 public void setup(){
 size(1920,1080);
@@ -94,9 +96,9 @@ void mouseClicked() {
    if(boutondesactiv.selectionne()){
     Alarm.turnOff();
   }
-    /* if(boutonProrioGoH.selectionne()){
-    Proprio.go_home();
-  }*/
+    if(boutonProrioGoH.selectionne()){
+      Proprio.go_home();
+  }
      if(boutonProrioGoA.selectionne()){
     Proprio.go_away();
   }
@@ -115,6 +117,12 @@ void mouseClicked() {
   if((boutonIntrujard.selectionne() || boutonIntruBack.selectionne() || boutonIntruroof.selectionne()) &&(!Alarm.isPartial()&& !Alarm.isTotal() && !Alarm.isJardin())){
     Intrusion.intru_non_detect();
   }
+  if( boutonActivSirene.selectionne()){
+    Intrusion.desactiv_siren();
+  }
+  if(  boutonActivDesactivSirene.selectionne()){
+    Intrusion.reactiv_siren();
+  }
 }
 void mouseReleased(){
   boutonOuvrirV.relache();
@@ -127,6 +135,7 @@ void mouseReleased(){
   boutonIntruBack.relache();
   boutonIntruroof.relache();
   boutonProrioGoA.relache();
-  /*boutonProrioGoH.relache();*/
-
+  boutonProrioGoH.relache();
+  boutonActivSirene.relache();
+  boutonActivDesactivSirene.relache();
 }

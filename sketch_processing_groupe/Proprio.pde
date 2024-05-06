@@ -14,11 +14,11 @@ public class proprio{
     x=-100;
     y=-100;
   }
- /* public void go_home(){
+  public void go_home(){
     is_near=true;
     x=570;
     y=760;
-  }*/
+  }
   public boolean is_here(){
     return is_near;
   }

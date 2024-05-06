@@ -1,8 +1,11 @@
 import java.util.Random;
 Random rand = new Random();
 int randomIndex = int(random(3));
+
+
 public class intrusion{
   boolean intrusion;
+  boolean desactiv_sirene;
   PImage intrus;
   PImage sirene;
   boolean jard;
@@ -12,10 +15,12 @@ public class intrusion{
   int y_intrus;
   int x_sirene;
   int y_sirene;
-  alarm Alarm;
+   proprio propri;
+   
  
   intrusion(){
     intrusion = false;
+    desactiv_sirene=false;
     jard=false;
     back=false;
     roof=false;
@@ -25,8 +30,7 @@ public class intrusion{
     y_intrus=0;
     x_sirene=0;
     y_sirene=0;
-    Alarm=new alarm();
-   
+   propri=new proprio();
   }
   void intru_Jardin_detect(){
     intrusion=true; back=false;
@@ -89,18 +93,28 @@ void intru_Back_non_detect(){
     x_sirene=-100;
     y_sirene=-100;
  }
+ boolean guard_desactiv_siren(){return propri.is_here();}
+ 
+ void desactiv_siren(){
+   desactiv_sirene=true;}
+void reactiv_siren(){
+  desactiv_sirene=false;
+}
 void display(){
   if (intrusion==true && jard == true && back==false && roof==false){
     image(intrus,x_intrus,y_intrus,intrus.width/2,intrus.height/2);
+    if(!desactiv_sirene){
     image(sirene,x_sirene,y_sirene,sirene.width/2,sirene.height/2);
-  }
+  }}
   if (intrusion ==true  && back==true && jard==false && roof==false){
      image(intrus,x_intrus,y_intrus,intrus.width/2,intrus.height/2);
+     if(!desactiv_sirene){
      image(sirene,x_sirene,y_sirene,sirene.width/2,sirene.height/2);
-  }
+  }}
   if(intrusion==true &&  roof==true && back==false && jard==false){
     image(intrus,x_intrus,y_intrus,intrus.width/2,intrus.height/2);
-     image(sirene,x_sirene,y_sirene,sirene.width/2,sirene.height/2);
+    if(!desactiv_sirene){
+     image(sirene,x_sirene,y_sirene,sirene.width/2,sirene.height/2);}
 }
 if (intrusion == true && roof == false && back == false && jard == false) {
   
