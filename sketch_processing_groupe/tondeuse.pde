@@ -38,17 +38,18 @@ class Tondeuse{
   }
   
   void beau_temp(){meteo=true;meteo_visuel=loadImage("soleil.png");}
-  void mauvais_temps(){meteo_visuel= loadImage("pluie.png");}
+  void mauvais_temp(){meteo=false;meteo_visuel= loadImage("pluie.png");}
   //void mauvais temp()
-  boolean guard_tondre(){return (login_tondeuse.login && login.login && on==false&&eau_et_electricite.electricite);}
+  boolean guard_tondre(){return (login_tondeuse.login && login.login && on==false&&eau_et_electricite.electricite && meteo);}
     
   void tondre(int niveau_de_tonte){
     
-    if (temps.heure<horaire[1][0] || temps.heure>horaire[0][0]||(temps.heure==horaire[0][0]&&temps.minute>horaire[0][1]))//horaire si pd nuit comence matin peut etre supp plus tard
+    if (temps.heure<horaire[1][0] || (temps.heure==horaire[1][0] && temps.minute<=horaire[1][1]) || temps.heure>horaire[0][0]||(temps.heure==horaire[0][0]&&temps.minute>horaire[0][1]))//horaire si pd nuit comence matin peut etre supp plus tard
     {
       on=true;
       rectangles_herbe_Y=920+niveau_de_tonte*10;
-      heure_de_fin.jour=temps.jour;
+      if (temps.heure>horaire[0][0] ||(temps.heure==horaire[0][0] && temps.minute<=horaire[0][1])){heure_de_fin.jour=temps.jour+1;}
+      else{heure_de_fin.jour=temps.jour;}//si avant minuit doit metre heure_de_fin.jour au jour suivant
       heure_de_fin.heure=horaire[1][0]+4;
       heure_de_fin.minute=horaire[1][0];
     }
@@ -63,8 +64,8 @@ class Tondeuse{
       on=true;
       rectangles_herbe_Y=920+niveau_de_tonte*10;
       heure_de_fin.jour= temps.jour+1;
-      heure_de_fin.heure=horaire[1][0]+(horaire[0][1]-temps.heure-(60-temps.minute+horaire[0][1])/60);
-      heure_de_fin.minute=(temps.minute+horaire[1][1])%60;
+      heure_de_fin.heure=horaire[1][0]+4-(horaire[0][1]-temps.heure-(60-temps.minute+horaire[0][1])/60);
+      heure_de_fin.minute=(((temps.minute+horaire[1][1]-(60-temps.minute+horaire[0][1]))%60)+60)%60;
   }
   
     
@@ -89,7 +90,7 @@ class Tondeuse{
     }
   }
  
- boolean guard_interuption_meteo(){return meteo;}
+ boolean guard_interuption_meteo(){return meteo&&on;}
  
  void interuption_meteo(){
    if (((heure_de_fin.heure-horaire[1][0])*60+heure_de_fin.minute-horaire[1][1])<=240){//si faisait un saut vers le lendemain
@@ -102,9 +103,30 @@ class Tondeuse{
  Temp date_fin_temporaire=new Temp();
  date_fin_temporaire.heure=temps.heure+(temp_restant_a_interuption/60);
  date_fin_temporaire.minute=(temps.minute+temp_restant_a_interuption)%60;
- return!(temps.heure==horaire[0][0]&&temps.minute>horaire[0][1])&&((date_fin_temporaire.heure<horaire[0][0])||(date_fin_temporaire.heure==horaire[0][0] && date_fin_temporaire.minute<=horaire[0][1])) ;}
+ return!(temps.heure==horaire[0][0]&&temps.minute>horaire[0][1])&&((date_fin_temporaire.heure<horaire[0][0])||(date_fin_temporaire.heure==horaire[0][0] && date_fin_temporaire.minute<=horaire[0][1]))&&!on&&meteo;}
+ 
+ 
  void reprise(){
-   if(heure_de_fin.heure<=horaire[1][0]+4){}
+   if (temps.heure<horaire[1][0] ||(temps.heure==horaire[1][0] && temps.minute<=horaire[1][1]) || temps.heure>horaire[0][0]||(temps.heure==horaire[0][0]&&temps.minute>horaire[0][1]))//horaire si pd nuit comence matin peut etre supp plus tard
+    {
+      on=true;
+      if (temps.heure>horaire[0][0] ||(temps.heure==horaire[0][0] && temps.minute<=horaire[0][1])){heure_de_fin.jour=temps.jour+1;}
+      else{heure_de_fin.jour=temps.jour;}
+      heure_de_fin.heure=horaire[1][0]+ temp_restant_a_interuption/60;
+      heure_de_fin.minute=horaire[1][0]+ temp_restant_a_interuption%60;
+    }
+    else if(temps.heure>horaire[1][0]||(temps.heure==horaire[1][0]&&temps.minute>=horaire[1][1]) &&(temps.heure<horaire[0][0]-4||(temps.heure==horaire[0][0]-4&&temps.minute<=horaire[0][1]))){//si normal
+      on=true;
+      heure_de_fin.jour=temps.jour;
+      heure_de_fin.heure=temps.heure+temp_restant_a_interuption/60;
+      heure_de_fin.minute=temps.minute+temp_restant_a_interuption%60;
+    }
+    else if(temps.heure<horaire[0][0]){// si tard
+      on=true;
+      heure_de_fin.jour= temps.jour+1;
+      heure_de_fin.heure=horaire[1][0]+(temp_restant_a_interuption/60)-(horaire[0][1]-temps.heure-(60-temps.minute+horaire[0][1])/60);
+      heure_de_fin.minute=(((temps.minute+horaire[1][1]+temp_restant_a_interuption-(60-temps.minute+horaire[0][1]))%60)+60)%60;
+  }
  
  }
  boolean guard_off(){return(login.login && on && (heure_de_fin.jour<temps.jour||(heure_de_fin.jour==temps.jour&&(heure_de_fin.heure<temps.heure||(heure_de_fin.heure==temps.heure && heure_de_fin.minute<temps.minute)))));}

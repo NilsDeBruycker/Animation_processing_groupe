@@ -44,6 +44,8 @@ Bouton bouton_tondre=new Bouton(1035,935,90,30,"tondre");
 Bouton bouton_pas_tondre=new Bouton(1225,935,90,30,"pas_tondre");
 Tondeuse tondeuse;
 Bouton bouton_login_tondeuse= new Bouton(1618,227,100,30,"Login tond");
+Bouton bouton_meteo_soleil= new Bouton(590,300,90,30,"bonne meteo");
+Bouton bouton_meteo_pluie=new Bouton(500,300,90,30,"mauvaise meteo");
 
 String notification = ""; // Variable pour stocker la notification
 boolean showNotification = true; // Indique si la notification doit être affichée
@@ -320,7 +322,12 @@ void mousePressed() {
  if(bouton_pas_tondre.selectionne()&&tondeuse.guard_off()){tondeuse.off();}
  if(bouton_login.selectionne()){login.ecrire=true;}
  if(bouton_login_tondeuse.selectionne()){tondeuse.login_tondeuse.ecrire=true;}
-  
+ if(bouton_meteo_soleil.selectionne()){tondeuse.beau_temp();}//peut ajouter repise ici pour faire auto
+ if(bouton_meteo_pluie.selectionne()){
+   if (tondeuse.guard_interuption_meteo()){tondeuse.interuption_meteo();}
+     tondeuse.mauvais_temp();}
+    
+
 }
 
 void mouseReleased() {
@@ -349,6 +356,8 @@ void mouseReleased() {
   bouton_tondre.relache();
   bouton_login.relache();
   bouton_login_tondeuse.relache();
+  bouton_meteo_soleil.relache() ;
+  bouton_meteo_pluie.relache() ;
 }
 
 void drawTime() {

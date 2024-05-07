@@ -87,6 +87,11 @@ public class Temp {
   bouton_tondre.maj_souris();
   bouton_tondre.majcouleur(tondeuse.guard_tondre());
   bouton_tondre.affiche();
+  bouton_meteo_soleil.maj_souris() ;
+  bouton_meteo_soleil.affiche() ;
+  
+  bouton_meteo_pluie.maj_souris() ;
+  bouton_meteo_pluie.affiche() ;
   
   bouton_login.maj_souris();
   bouton_login.affiche();
