@@ -3,7 +3,7 @@ class SecheLinge {
     PImage secheLingePlein;
     boolean secheLingeEstPlein = false; 
     boolean secheLingeEstAllume = false; 
-    
+    boolean commande=false;
     boolean estEnPauseSL = false;
     int tempsRestantSL = 0; // en minutes
 
@@ -42,7 +42,7 @@ class SecheLinge {
     boolean guard_toggle_pleinSL(){if(secheLingeEstAllume){return false;}else return true;}
 
     void toggleAllumeSL() {
-      if ((temps.heure >= 22 || temps.heure < 6 || temps.ferie || temps.jour % 7 == 5 || temps.jour % 7 == 6) && !secheLingeEstAllume && eau_et_electricite.electricite && eau_et_electricite.eau) {
+      if (!secheLingeEstAllume) {
         secheLingeEstAllume = true;
       
         heureFinirSL.jour= temps.jour;
@@ -59,7 +59,7 @@ class SecheLinge {
     }
     boolean guard_toggleSL (){
     //if(!estPlein){return notification}
-      return(temps.heure >= 22 || temps.heure < 6) && secheLingeEstPlein && !secheLingeEstAllume && login.login && eau_et_electricite.electricite && eau_et_electricite.eau;
+      return(temps.heure >= 22 || temps.heure < 4|| temps.ferie|| temps.jour % 7 == 5 || temps.jour % 7 == 6) && secheLingeEstPlein && !secheLingeEstAllume && login.login && eau_et_electricite.electricite && eau_et_electricite.eau && commande;
     }
   
     boolean guard_toggle_eteintSL(){return(heureFinirSL.jour<temps.jour||(heureFinirSL.jour==temps.jour&&(heureFinirSL.heure<temps.heure||(heureFinirSL.heure==temps.heure && heureFinirSL.minute<temps.minute))));}

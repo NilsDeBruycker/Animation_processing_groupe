@@ -20,6 +20,7 @@ volet (){
     image(imvolet,x+140,y,imvolet.width/2,imvolet.height/2);
     }
   }
-  /*public boolean guard_volet(){
-    return login;*/
+  boolean guard_volet(){
+    return (login.login && !alarme.total);
+  }
 }

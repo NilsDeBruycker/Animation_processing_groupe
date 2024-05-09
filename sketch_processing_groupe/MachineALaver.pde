@@ -3,7 +3,7 @@ public class MachineALaver {
   PImage imagePlein;
   boolean estPlein = false;
   boolean estAllume = false;
-  
+  boolean commande=false;  
   boolean estEnPause = false;
   int tempsRestant = 0; // en minutes
 
@@ -46,7 +46,7 @@ public class MachineALaver {
 
   void toggleAllume() {
 
-    if ((temps.heure >= 22 || temps.heure < 6 || temps.ferie || temps.jour % 7 == 5 || temps.jour % 7 == 6) && !estAllume && eau_et_electricite.electricite && eau_et_electricite.eau) {
+    if (!estAllume) {
       estAllume = true;
       
       heureFinir.jour= temps.jour;
@@ -64,7 +64,7 @@ public class MachineALaver {
   
   boolean guard_toggle (){
   //if(!estPlein){return notification}
-  return(temps.heure >= 22 || temps.heure < 6) && estPlein && !estAllume && login.login && eau_et_electricite.electricite && eau_et_electricite.eau;
+  return(temps.heure >= 22 || temps.heure < 4|| temps.ferie|| temps.jour % 7 == 5 || temps.jour % 7 == 6) && estPlein && !estAllume && login.login && eau_et_electricite.electricite && eau_et_electricite.eau&& commande;
   }
   
   boolean guard_toggle_eteint(){return(heureFinir.jour<temps.jour||(heureFinir.jour==temps.jour&&(heureFinir.heure<temps.heure||(heureFinir.heure==temps.heure && heureFinir.minute<temps.minute))));}

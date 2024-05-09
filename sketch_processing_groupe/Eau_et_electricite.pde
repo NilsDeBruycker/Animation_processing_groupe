@@ -16,9 +16,14 @@ public class Eau_et_electricite{
   bare_energie=true;
   }
   void crash_eau(){eau=false;
+  
+    machineALaver.pause();
+    laveVaisselle.pauseLV();
+    secheLinge.pauseSL();
     image_eau=loadImage("eau_cassee.png");
     //notif de crash d'eau
 }
+
   
   void crash_electricite(){
   electricite=false; 
@@ -27,6 +32,19 @@ public class Eau_et_electricite{
   date_crash_electricite.minute=temps.minute;
   image_electricite=loadImage("electricite_cassee.png");
   // notif de danger pour chaque apareil qui est on
+  if (machineALaver.estAllume){
+    notification = "risque d'interumption de la machine a laver du a un crash d'electricite";
+    notifications.add(notification);}
+  if (secheLinge.secheLingeEstAllume){
+    notification = "risque d'interumption du seche linge du a un crash d'electricite";
+    notifications.add(notification);}
+  if (laveVaisselle.estAllumeLV){
+    notification = "risque d'interumption du lave vaisselle du a un crash d'electricite";
+    notifications.add(notification);}
+  if (alarme.jardin||alarme.partial||alarme.total){
+    notification = "risque d'interumption de l'alarme du a un crash d'electricite";
+    notifications.add(notification);}
+  
   }
   
   boolean guard_big_crash(){
@@ -35,6 +53,14 @@ public class Eau_et_electricite{
   
   void gros_crash_electricite(){electricite=false;
     bare_energie=false;
+    
+    if (machineALaver.estAllume){machineALaver.toggleAllume();}
+    if (laveVaisselle.estAllumeLV){laveVaisselle.toggleAllumeLV() ;}
+    if (secheLinge.secheLingeEstAllume){secheLinge.toggleAllumeSL() ;}
+    alarme.total=false;
+    alarme.partial=false;
+    alarme.jardin=false;
+    tondeuse.on=false;
     //eteindre tout apareil et notif générale
   }
   

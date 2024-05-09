@@ -3,6 +3,7 @@ class LaveVaisselle {
   PImage imagePleinLV;
   boolean estPleinLV = false;
   boolean estAllumeLV = false;
+  boolean commande=false;
   
     boolean estEnPauseLV = false;
   int tempsRestantLV = 0; // en minutes
@@ -44,7 +45,7 @@ class LaveVaisselle {
   boolean guard_toggle_pleinLV(){if(estAllumeLV){return false;}else return true;}
 
   void toggleAllumeLV() {
-    if ((temps.heure >= 22 || temps.heure < 6 || temps.ferie || temps.jour % 7 == 5 || temps.jour % 7 == 6) && !estAllumeLV && eau_et_electricite.electricite && eau_et_electricite.eau) {
+    if (!estAllumeLV) {
       estAllumeLV = true;
       
       heureFinirLV.jour= temps.jour;
@@ -62,7 +63,7 @@ class LaveVaisselle {
   
    boolean guard_toggleLV (){
     //if(!estPlein){return notification}
-    return(temps.heure >= 22 || temps.heure < 6) && estPleinLV && !estAllumeLV && login.login  && eau_et_electricite.electricite && eau_et_electricite.eau;
+    return(temps.heure >= 22 || temps.heure < 4|| temps.ferie|| temps.jour % 7 == 5 || temps.jour % 7 == 6) && estPleinLV && !estAllumeLV && login.login  && eau_et_electricite.electricite && eau_et_electricite.eau && commande;
    }
   
    boolean guard_toggle_eteintLV(){return(heureFinirLV.jour<temps.jour||(heureFinirLV.jour==temps.jour&&(heureFinirLV.heure<temps.heure||(heureFinirLV.heure==temps.heure && heureFinirLV.minute<temps.minute))));}

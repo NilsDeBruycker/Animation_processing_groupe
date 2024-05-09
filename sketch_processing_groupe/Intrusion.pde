@@ -15,8 +15,11 @@ public class intrusion{
   int y_intrus;
   int x_sirene;
   int y_sirene;
+  boolean intrudetect;
    proprio propri;
    
+   
+  void check(){}
  
   intrusion(){
     intrusion = false;
@@ -28,70 +31,43 @@ public class intrusion{
     sirene=loadImage("Sirene.png");
     x_intrus=0;
     y_intrus=0;
-    x_sirene=0;
-    y_sirene=0;
+    x_sirene=720;
+    y_sirene=700;
    propri=new proprio();
+   intrudetect = false;
   }
   void intru_Jardin_detect(){
     intrusion=true; back=false;
     roof=false;
     jard=true;
+    intrudetect = false;
     x_intrus=380;
     y_intrus=950;
-    x_sirene=720;
-    y_sirene=700;
+    
     
 }
-  void intru_Jardin_non_detect(){
-    intrusion=true; back=false;
-    roof=false;
-    jard=true;
-    x_intrus=380;
-    y_intrus=950;
-    x_sirene=-100;
-    y_sirene=-100;
-    
-}
+ 
 
  void intru_Back_detect(){
    intrusion=true; back=true;
-    roof=false;jard=false;
+    roof=false;jard=false; intrudetect = false;
    x_intrus=1000;
-   y_intrus=950;x_sirene=720;
-    y_sirene=700;
+   y_intrus=950;
    
 }
-void intru_Back_non_detect(){
-   intrusion=true; back=true;
-    roof=false;jard=false;
-   x_intrus=1000;
-   y_intrus=950;x_sirene=-100;
-    y_sirene=-100;
-   
-}
+
  void intru_Roof_detect(){
     intrusion=true; back=false;
-    roof=true;jard=false;
+    roof=true;jard=false;intrudetect = false;
    x_intrus=590;
    y_intrus=510;
-   x_sirene=720;
-    y_sirene=700;
+   
    
  }
- void intru_Roof_non_detect(){
-    intrusion=true; back=false;
-    roof=true;jard=false;
-   x_intrus=590;
-   y_intrus=510;
-   x_sirene=-100;
-   y_sirene=-100;
-   
- }
+
  void intru_non_detect(){
    intrusion=true; back=false;
     roof=false;jard=false;
-    x_sirene=-100;
-    y_sirene=-100;
  }
  boolean guard_desactiv_siren(){return propri.is_here();}
  
@@ -103,18 +79,53 @@ void reactiv_siren(){
 void display(){
   if (intrusion==true && jard == true && back==false && roof==false){
     image(intrus,x_intrus,y_intrus,intrus.width/2,intrus.height/2);
-    if(!desactiv_sirene){
+    if(!desactiv_sirene && (alarme.total || alarme.partial || alarme.jardin)){
     image(sirene,x_sirene,y_sirene,sirene.width/2,sirene.height/2);
-  }}
+  }
+    if (!intrudetect){ 
+     notification = "Intru detectee sur le jardin"; // Met à jour la notification
+    notifications.add(notification);
+    showNotification = true; // Réactive l'affichage de la notification 
+    intrudetect = true;
+    message.register_new_intrusion();
+     }
+    if(!intrusion && !jard ) {
+      showNotification = false;
+    }
+}
   if (intrusion ==true  && back==true && jard==false && roof==false){
      image(intrus,x_intrus,y_intrus,intrus.width/2,intrus.height/2);
-     if(!desactiv_sirene){
+     if(!desactiv_sirene && (alarme.total || alarme.partial)){
      image(sirene,x_sirene,y_sirene,sirene.width/2,sirene.height/2);
-  }}
+  }
+     if (!intrudetect){ 
+     notification = "Intru detectee sur la venue "; // Met à jour la notification
+    notifications.add(notification);
+    showNotification = true; // Réactive l'affichage de la notification 
+    intrudetect = true;
+    message.register_new_intrusion();
+     }
+    if(!intrusion && !back) {
+      showNotification = false;
+    }
+}
   if(intrusion==true &&  roof==true && back==false && jard==false){
     image(intrus,x_intrus,y_intrus,intrus.width/2,intrus.height/2);
-    if(!desactiv_sirene){
-     image(sirene,x_sirene,y_sirene,sirene.width/2,sirene.height/2);}
+    if(!desactiv_sirene&& alarme.total){
+     image(sirene,x_sirene,y_sirene,sirene.width/2,sirene.height/2);
+     
+     
+     if (!intrudetect){ 
+     notification = "Intru detectee sur le toit"; // Met à jour la notification
+    notifications.add(notification);
+    showNotification = true; // Réactive l'affichage de la notification 
+    intrudetect = true;
+    message.register_new_intrusion();
+     }
+    if(!intrusion &&  !roof) {
+      showNotification = false;
+    }
+ }
 }
 if (intrusion == true && roof == false && back == false && jard == false) {
   

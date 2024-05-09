@@ -13,7 +13,7 @@ public class Login{
   
   void display(){
       if (login==false){
-        fill(255,0,255);
+        fill(255,255,255);
         rect(X,Y,100,30);
         fill(0,0,0);
         text(user_input,X,Y);
@@ -21,8 +21,9 @@ public class Login{
   }
   void get_input_from_user(){
      if (keyPressed && ecrire){
-       if (key==BACKSPACE){user_input="";}
-       if (key==ENTER || key==RETURN){enter_password();user_input="";ecrire=false;}
+       if (key==BACKSPACE){if (user_input.length()>0) {
+        user_input=user_input.substring(0, user_input.length()-1);} }
+       else if (key==ENTER || key==RETURN){enter_password();user_input="";ecrire=false;}
        else{user_input=user_input+key;}
        
     }
